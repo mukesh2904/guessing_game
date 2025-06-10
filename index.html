@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Number Guessing Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Guess the Number</h1>
+    <p>Enter a number between 1 and 10:</p>
+    <input type="number" id="guess" min="1" max="10" />
+    <button onclick="checkGuess()">Submit</button>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    const randomNumber = Math.floor(Math.random() * 10) + 1;
+
+    function checkGuess() {
+      const userGuess = parseInt(document.getElementById("guess").value);
+      const message = document.getElementById("message");
+
+      if (isNaN(userGuess)) {
+        message.textContent = "Please enter a number.";
+        message.style.color = "red";
+        return;
+      }
+
+      if (userGuess < 1 || userGuess > 10) {
+        message.textContent = "Number must be between 1 and 10.";
+        message.style.color = "red";
+        return;
+      }
+
+      if (userGuess === randomNumber) {
+        message.textContent = "You're a genius!";
+        message.style.color = "green";
+      } else {
+        message.textContent = "Try again!";
+        message.style.color = "orange";
+      }
+    }
+  </script>
+</body>
+</html>
